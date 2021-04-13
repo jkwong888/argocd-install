@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  repository.credentials: |
+    - url: ssh://jkwng@google.com@source.developers.google.com:2022
+      sshPrivateKeySecret:
+        name: repo-2978504068
+        key: sshPrivateKey
+    - url: ssh://git@gitlab.gitlab.jkwong.info
+      sshPrivateKeySecret:
+        name: gitlab-ssh-secret
+        key: sshPrivateKey
+  repositories: |
+    - type: helm
+      url: https://storage.googleapis.com/fruitshop-charts
+      name: fruitshop-charts
+    - url: ssh://jkwng@google.com@source.developers.google.com:2022
+    - url: ssh://git@gitlab.gitlab.jkwong.info

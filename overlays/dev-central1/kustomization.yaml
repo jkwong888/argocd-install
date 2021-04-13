@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- ../../components/dev
+
+resources:
+- argocd-inception.yaml
+#- overlays/dev/application-dev.yaml
+#- overlays/gke-ingress/argocd-ui-ingress.yaml
+#- bases/hello-world-application.yaml
+
+patchesStrategicMerge:
+- sre-applications.yaml
+
+namespace: argocd

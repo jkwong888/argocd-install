@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: argocd-proj
+spec:
+  clusterResourceWhitelist:
+  - group: ""
+    kind: Namespace
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+  - group: policy
+    kind: PodSecurityPolicy
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+  orphanedResources:
+    warn: false
+  sourceRepos:
+  - '*'

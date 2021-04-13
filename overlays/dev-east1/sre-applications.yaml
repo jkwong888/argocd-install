@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sre-apps
+spec:
+  source:
+    path: overlays/dev/central1
+    repoURL: ssh://git@gitlab.gitlab.jkwong.info/sre/argocd-sre-applications.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

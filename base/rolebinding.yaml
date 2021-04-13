@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+    name: argocd-runasroot
+subjects:
+- kind: ServiceAccount
+  name: argocd-application-controller
+  namespace: argocd
+- kind: ServiceAccount
+  name: argocd-server
+  namespace: argocd
+- kind: ServiceAccount
+  name: argocd-dex-server
+  namespace: argocd
+- kind: ServiceAccount
+  name: default
+  namespace: argocd
+roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: runasroot-psp-user

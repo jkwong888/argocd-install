@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+spec:
+  clusterResourceWhitelist:
+  - group: ""
+    kind: Namespace
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+  - group: ""
+    kind: ResourceQuota
+  - group: ""
+    kind: LimitRange
+  - group: ""
+    kind: NetworkPolicy
+  orphanedResources:
+    warn: false
+  sourceRepos:
+  - '*'
